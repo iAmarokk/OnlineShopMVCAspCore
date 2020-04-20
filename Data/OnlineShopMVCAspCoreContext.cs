@@ -14,6 +14,8 @@ namespace OnlineShopMVCAspCore.Data
         {
         }
 
-        public DbSet<OnlineShopMVCAspCore.Models.Product> Product { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Rating> Rating { get; set; }
+
     }
 }
