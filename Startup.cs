@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using OnlineShopMVCAspCore.Data;
+using OnlineShopMVCAspCore.Models;
 
 namespace OnlineShopMVCAspCore
 {
@@ -26,7 +27,7 @@ namespace OnlineShopMVCAspCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddTransient<IDataRepository, DataRepository>();
             services.AddDbContext<OnlineShopMVCAspCoreContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("OnlineShopMVCAspCoreContext")));
         }
@@ -55,7 +56,7 @@ namespace OnlineShopMVCAspCore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Products}/{action=Index}/{id?}");
             });
         }
     }

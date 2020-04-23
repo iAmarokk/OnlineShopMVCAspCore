@@ -14,8 +14,19 @@ namespace OnlineShopMVCAspCore.Data
         {
         }
 
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Rating> Rating { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Category> Categorys { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<Client>().ToTable("Client");
+            modelBuilder.Entity<Rating>().ToTable("Rating");
+            modelBuilder.Entity<Category>().ToTable("Category");
+            modelBuilder.Entity<Order>().ToTable("Order");
+        }
     }
 }
