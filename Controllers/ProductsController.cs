@@ -23,15 +23,15 @@ namespace OnlineShopMVCAspCore.Controllers
 
         // GET: Products
         public IActionResult Index(string category = null, int? rating = null,
-           int? price = null)
+           int? price = null, string sort = null)
         {
             //ViewData["Rating"] = new SelectList(_context.Set<Rating>(), "Rating", "Name");
             //ViewData["Category"] = new SelectList(_context.Set<Category>(), "Category", "Name");
-            var products = dataRepository.GetFilteredProducts(category, rating, price);
+            var products = dataRepository.GetFilteredProducts(category, rating, price, sort);
             ViewBag.category = category;
             ViewBag.rating = rating;
             ViewBag.price = price;
-
+            ViewBag.sort = sort;
             return View(products);
         }
 

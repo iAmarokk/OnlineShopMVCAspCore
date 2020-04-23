@@ -13,7 +13,7 @@ namespace OnlineShopMVCAspCore.Models
         IEnumerable<Product> Products { get; }
 
         IEnumerable<Product> GetFilteredProducts(string category = null, int? rating = null,
-           decimal? price = null);
+           decimal? price = null, string sort = "Up");
 
         void CreateProduct(Product newProduct);
 

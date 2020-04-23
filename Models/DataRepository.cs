@@ -26,10 +26,12 @@ namespace OnlineShopMVCAspCore.Models
                 .Include(c => c.Category).ToList();
 
         public IEnumerable<Product> GetFilteredProducts(string category = null, int? rating = null,
-                decimal? price = null)
+                decimal? price = null, string sort = null)
         {
 
-            IQueryable<Product> data = context.Products;
+            IQueryable<Product> data = context.Products
+                .Include(c => c.Rating)
+                .Include(c => c.Category);
             if (category != null)
             {
                 data = data.Where(p => p.Category.Name == category);
@@ -41,6 +43,14 @@ namespace OnlineShopMVCAspCore.Models
             if (price != null)
             {
                 data = data.Where(p => p.Price >= price);
+            }
+            if(sort == "Down" )
+            {
+                data.OrderByDescending(p => p.Price);
+            }
+            else
+            {
+                data.OrderByDescending(p => p.Price);
             }
             return data;
         }

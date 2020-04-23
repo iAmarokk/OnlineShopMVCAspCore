@@ -3,23 +3,29 @@
 @{
     ViewData["Title"] = "Index";
 }
-<form asp-controller="Products" asp-action="Index">
-    Category: <input type="text" name="category">
-    Rating: <input type="number" name="rating">
-    Price >= : <input type="number" name="price">
-    <input type="submit" value="Search" class="btn btn-primary" />
-</form>
-@foreach (var product in Model)
-{
-    <div>
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="@product.Image" alt="Picture of @product.Name">
-                <div class="caption">
-                    <h3 class="pull-right">@product.Price.ToString("c")</h3>
-                    <p>@product.Description</p>
-                </div>
-            </div>
-        </div>        
-    </div>
-}
+    <form asp-controller="Products" asp-action="Index">
+        Category: <input type="text" name="category">
+        Rating: <input type="number" name="rating">
+        Price >= : <input type="number" name="price">
+        <label>Sort:</label>
+        <select name="sort" class="form-control">
+            <option value="Up">Up</option>
+            <option sort="Up">
+                Up
+            </option>
+            <option sort="Down">Down</option>
+        </select>
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </form>
+<div class="form-row mt-4 mb-2">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-4">
+            <img class="img-thumbnail" src="@product.Image" alt="Picture of @product.Name">
+            <h2>@product.Name</h2>
+            <h3 class="pull-right">@product.Price.ToString("c")</h3>
+            <p>@product.Description</p>
+            <p>Рейтинг товара:  <b>@product.Rating.Value</b></p>
+        </div>
+    }
+</div>
